@@ -1,0 +1,102 @@
+<section id="awards" class="awards" [@fadeInUp]>
+  <div class="awards-container">
+    <!-- Header -->
+    <div class="awards-header">
+      <h2 class="section-title">
+        <span class="title-prefix">05.</span>
+        <span class="title-text">Awards & Achievements</span>
+      </h2>
+      <p class="section-subtitle">Recognition and accolades earned through dedication, excellence, and perseverance</p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter" [@slideInLeft]>
+      <div class="filter-label">Filter by Category:</div>
+      <div class="category-buttons">
+        <button
+          *ngFor="let category of categories"
+          class="category-btn"
+          [class.active]="activeCategory === category.id"
+          (click)="switchCategory(category.id)"
+          [disabled]="!hasCategoryAwards(category.id)"
+          type="button"
+          [attr.aria-label]="'Filter awards by ' + category.name"
+        >
+          <span class="category-icon">{{ category.icon }}</span>
+          <span class="category-name">{{ category.name }}</span>
+          <span class="category-count">{{ getCountByCategory(category.id) }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Awards Grid -->
+    <div class="awards-grid" [@staggerContainer]>
+      <div
+        *ngFor="let award of getFilteredAwards()"
+        class="award-card"
+        [@scaleIn]
+        [attr.data-category]="award.category"
+      >
+        <!-- Card Header -->
+        <div class="award-header">
+          <div class="award-icon-wrapper">
+            <span class="award-icon">{{ award.icon }}</span>
+          </div>
+          <div class="award-meta">
+            <span class="award-year">{{ award.year }}</span>
+            <span class="award-badge" [style.background]="getCategoryColor(award.category)">{{ award.badge }}</span>
+          </div>
+        </div>
+
+        <!-- Card Content -->
+        <div class="award-content">
+          <h3 class="award-title">{{ award.title }}</h3>
+          <p class="award-organization">{{ award.organization }}</p>
+          <p class="award-description">{{ award.description }}</p>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="award-footer">
+          <span class="category-tag" [style.color]="getCategoryColor(award.category)">
+            {{ award.category | uppercase }}
+          </span>
+          <span class="achievement-indicator">✨</span>
+        </div>
+
+        <!-- Hover effect element -->
+        <div class="card-glow"></div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="getFilteredAwards().length === 0">
+      <span class="empty-icon">🔍</span>
+      <p>No awards found in this category</p>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="awards-stats-wrapper" [@fadeInUp]>
+      <div class="awards-stats">
+        <div class="stat" [@scaleIn]>
+          <div class="stat-number">
+            <span class="stat-value">{{ awards.length }}</span>
+            <span class="stat-plus">+</span>
+          </div>
+          <div class="stat-label">Total Achievements</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat" [@scaleIn]>
+          <div class="stat-number">
+            <span class="stat-value">{{ categories.length - 1 }}</span>
+          </div>
+          <div class="stat-label">Award Categories</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat" [@scaleIn]>
+          <div class="stat-value">2014-2022</div>
+          <div class="stat-label">Timeline</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

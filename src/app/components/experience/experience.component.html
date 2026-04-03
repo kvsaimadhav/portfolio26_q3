@@ -1,0 +1,119 @@
+<section class="experience-section" [@fadeInUp] id="experience">
+  <div class="experience-container">
+    <!-- Header -->
+    <div class="experience-header">
+      <div class="header-content">
+        <p class="section-tag">Professional Journey</p>
+        <h2 class="section-title">Work Experience</h2>
+        <p class="section-subtitle">
+          Proven track record across defense, cloud infrastructure, and full-stack development with progressive leadership responsibilities
+        </p>
+      </div>
+
+      <!-- Experience Summary Stats -->
+      <div class="experience-stats">
+        <div class="exp-stat">
+          <div class="exp-stat-value">{{ getExperienceSummary().totalYears }}</div>
+          <div class="exp-stat-label">Years Experience</div>
+        </div>
+        <div class="exp-stat-divider"></div>
+        <div class="exp-stat">
+          <div class="exp-stat-value">{{ getExperienceSummary().companies }}</div>
+          <div class="exp-stat-label">Companies</div>
+        </div>
+        <div class="exp-stat-divider"></div>
+        <div class="exp-stat">
+          <div class="exp-stat-value">{{ getExperienceSummary().teamSize }}+</div>
+          <div class="exp-stat-label">Team Members Led</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Grid (2x2) -->
+    <div class="experience-grid" [@staggerCards]>
+      <div *ngFor="let exp of experiences; let i = index"
+           class="exp-card-wrapper"
+           [attr.data-role]="getRoleLevel(exp.position)"
+           [style.--exp-color]="exp.color">
+        
+        <!-- Gradient Background -->
+        <div class="card-bg-gradient"></div>
+
+        <!-- Main Card -->
+        <div class="experience-card" [class.current]="exp.current">
+          <!-- Current Badge -->
+          <div *ngIf="exp.current" class="current-badge">
+            <span class="badge-pulse"></span>
+            <span>Currently Working</span>
+          </div>
+
+          <!-- Top Section -->
+          <div class="card-header">
+            <div class="company-info">
+              <div class="company-icon">{{ exp.icon }}</div>
+              <div>
+                <h3 class="company-name">{{ exp.company }}</h3>
+                <p class="position-title">{{ exp.position }}</p>
+              </div>
+            </div>
+            <div class="role-badge">{{ getRoleLevel(exp.position) }}</div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline-info">
+            <span class="period">{{ exp.period }}</span>
+            <span class="duration">{{ exp.duration }}</span>
+          </div>
+
+          <!-- Description -->
+          <div class="description-section">
+            <ul class="description-list">
+              <li *ngFor="let desc of exp.description">{{ desc }}</li>
+            </ul>
+          </div>
+
+          <!-- Achievements (if any) -->
+          <div *ngIf="exp.achievements && exp.achievements.length > 0" class="achievements-section">
+            <p class="achievements-label">Key Achievements:</p>
+            <div class="achievements-list">
+              <span *ngFor="let achievement of exp.achievements" class="achievement-badge">
+                ✓ {{ achievement }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Skills/Tags -->
+          <div class="skills-section">
+            <p class="skills-label">Tech Stack</p>
+            <div class="skills-grid">
+              <span *ngFor="let tag of exp.tags" class="skill-tag">{{ tag }}</span>
+            </div>
+          </div>
+
+          <!-- Card Footer -->
+          <div class="card-footer">
+            <span class="footer-icon">→</span>
+          </div>
+        </div>
+
+        <!-- Hover Glow -->
+        <div class="card-glow"></div>
+      </div>
+    </div>
+
+    <!-- Trending Skills Section -->
+    <div class="trending-skills-section" [@slideInLeft]>
+      <div class="skills-header">
+        <h3 class="skills-title">Core Competencies</h3>
+        <p class="skills-subtitle">Most used technologies across all roles</p>
+      </div>
+      
+      <div class="trending-skills-grid">
+        <div *ngFor="let skill of getTrendingSkills()" class="skill-card">
+          <span class="skill-icon">⚙️</span>
+          <span>{{ skill }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

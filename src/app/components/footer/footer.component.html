@@ -1,0 +1,58 @@
+<footer class="site-footer">
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 120 28" preserveAspectRatio="none">
+      <path d="M0 18 C 20 30 40 4 60 18 C 80 30 100 4 120 18 L120 30 L0 30 Z"></path>
+    </svg>
+  </div>
+
+  <div class="footer-grid">
+    <div class="brand-block">
+      <h3 class="brand-title">Sai Madhav</h3>
+      <p class="brand-tag">Engineer + Cloud-native Architect</p>
+    </div>
+
+    <div class="block">
+      <p class="block-title">Quick links</p>
+      <ul class="link-list">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <p class="block-title">Legal</p>
+      <ul class="link-list">
+        <li *ngFor="let item of legalLinks"><a [href]="item.route">{{ item.label }}</a></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <p class="block-title">Connect</p>
+      <div class="social-links">
+        <a
+          *ngFor="let link of socialLinks"
+          [href]="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="link.name"
+        >
+          <img
+            class="social-icon"
+            [src]="'assets/icons/' + link.icon + '.svg'"
+            [alt]="link.name + ' icon'"
+            loading="lazy"
+          />
+          <span class="social-label">{{ link.name }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-credit">
+    <p>
+      &copy; {{ year }} Sai Madhav. All rights reserved. Crafted with clarity, high performance, and subtle motion.
+    </p>
+  </div>
+</footer>

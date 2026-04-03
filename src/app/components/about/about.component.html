@@ -1,0 +1,134 @@
+<section id="about" class="about" [@fadeInUp]>
+  <div class="about-container">
+    <!-- Header -->
+    <div class="about-header">
+      <h2 class="section-title">
+        <span class="title-text">About Me</span>
+      </h2>
+      <p class="section-subtitle">Get to know who I am and what drives my passion for technology</p>
+    </div>
+
+    <div class="about-content">
+      <!-- Left: Text Content -->
+      <div class="about-text" [@staggerContainer]>
+        <!-- Tab Navigation -->
+        <div class="about-tabs">
+          <button
+            *ngFor="let tab of aboutTabs"
+            class="tab-btn"
+            [class.active]="activeTab === tab.id"
+            (click)="switchTab(tab.id)"
+            [attr.aria-label]="'Switch to ' + tab.label + ' tab'"
+            type="button"
+          >
+            <span class="tab-icon">{{ tab.icon }}</span>
+            <span class="tab-label">{{ tab.label }}</span>
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content" *ngIf="getCurrentTab()" [@fadeInUp]>
+          <h3 class="tab-title">{{ getCurrentTab()?.label }}</h3>
+          <p class="tab-description">{{ getCurrentTab()?.content }}</p>
+
+          <!-- Key Points -->
+          <div class="key-points">
+            <div class="point" *ngIf="activeTab === 'profile'">
+              <span class="point-icon">✓</span>
+              <span>4+ Years of Professional Experience</span>
+            </div>
+            <div class="point" *ngIf="activeTab === 'profile'">
+              <span class="point-icon">✓</span>
+              <span>AWS Certified Solutions Architect</span>
+            </div>
+            <div class="point" *ngIf="activeTab === 'profile'">
+              <span class="point-icon">✓</span>
+              <span>Expert in Distributed Systems</span>
+            </div>
+
+            <div class="point" *ngIf="activeTab === 'passion'">
+              <span class="point-icon">🔥</span>
+              <span>Building Scalable Cloud Solutions</span>
+            </div>
+            <div class="point" *ngIf="activeTab === 'passion'">
+              <span class="point-icon">🔥</span>
+              <span>Mentoring Junior Developers</span>
+            </div>
+            <div class="point" *ngIf="activeTab === 'passion'">
+              <span class="point-icon">🔥</span>
+              <span>Contributing to Open Source</span>
+            </div>
+
+            <div class="point" *ngIf="activeTab === 'goals'">
+              <span class="point-icon">🎯</span>
+              <span>Lead Architectural Decisions</span>
+            </div>
+            <div class="point" *ngIf="activeTab === 'goals'">
+              <span class="point-icon">🎯</span>
+              <span>Impact Millions of Users</span>
+            </div>
+            <div class="point" *ngIf="activeTab === 'goals'">
+              <span class="point-icon">🎯</span>
+              <span>Become Technical Leader</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Live Code Editor -->
+      <div class="about-code" [@slideInRight]>
+        <!-- Code Header -->
+        <div class="code-header">
+          <div class="code-title-section">
+            <span class="code-language">{{ currentCodeBlock?.language }}</span>
+            <span class="code-name">{{ currentCodeBlock?.title }}</span>
+          </div>
+          <div class="code-actions">
+            <button
+              class="code-btn copy-btn"
+              [class.copied]="copyFeedback"
+              (click)="copyCode()"
+              type="button"
+              title="Copy code to clipboard"
+              aria-label="Copy code"
+            >
+              <span *ngIf="!copyFeedback">📋 Copy</span>
+              <span *ngIf="copyFeedback" class="copy-success">✓ Copied!</span>
+            </button>
+            <button
+              class="code-btn reset-btn"
+              (click)="resetCode()"
+              type="button"
+              title="Replay animation"
+              aria-label="Replay code animation"
+            >
+              🔄 Replay
+            </button>
+          </div>
+        </div>
+
+        <!-- Code Editor -->
+        <div class="code-editor-wrapper">
+          <div class="code-line-numbers">
+            <span *ngFor="let i of [].constructor(getLineCount()); let n = index" class="line-number">{{ n + 1 }}</span>
+          </div>
+          <div class="code-editor">
+            <pre class="code-content"><code>{{ displayedCode }}<span class="cursor" [class.active]="isCodeAnimating"></span></code></pre>
+          </div>
+        </div>
+
+        <!-- Code Footer -->
+        <div class="code-footer">
+          <span class="code-status" *ngIf="isCodeAnimating">
+            <span class="status-dot typing"></span>
+            <span>Typing...</span>
+          </span>
+          <span class="code-status" *ngIf="!isCodeAnimating">
+            <span class="status-dot complete"></span>
+            <span>Complete</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

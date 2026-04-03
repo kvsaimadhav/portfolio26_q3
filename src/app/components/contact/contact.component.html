@@ -1,0 +1,68 @@
+<section class="contact-section" id="contact">
+  <div class="contact-backdrop"></div>
+  <div class="contact-card" [class.sending]="status === 'sending'">
+    <div class="contact-header">
+      <p class="section-tag">Let’s Connect</p>
+      <h2>Contact Me</h2>
+      <p>Drop a message related to collaboration, consulting, or portfolio inquiries.</p>
+    </div>
+
+    <form novalidate (ngSubmit)="onSubmit()">
+      <div class="inputs-grid">
+        <label class="input-wrap">
+          <input
+            type="text"
+            [(ngModel)]="name"
+            name="name"
+            autocomplete="name"
+            required
+          />
+          <span>Name</span>
+        </label>
+
+        <label class="input-wrap">
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            autocomplete="email"
+            required
+          />
+          <span>Email</span>
+        </label>
+
+        <label class="textarea-wrap">
+          <textarea
+            [(ngModel)]="message"
+            name="message"
+            rows="6"
+            required
+          ></textarea>
+          <span>Message</span>
+        </label>
+      </div>
+
+      <div class="submit-row">
+        <button
+          type="submit"
+          [disabled]="!canSubmit || status === 'sending'"
+          class="btn-primary"
+        >
+          <span *ngIf="status !== 'sending'">Send Message</span>
+          <span *ngIf="status === 'sending'">Sending...</span>
+        </button>
+
+        <span class="form-hint" *ngIf="!canSubmit && status !== 'sending'">
+          All fields are required (name ≥ 3 chars, valid email, message ≥ 10 chars)
+        </span>
+      </div>
+
+      <div class="status-message">
+        <p class="success" *ngIf="status === 'success'">
+          ✅ Message sent successfully!
+        </p>
+        <p class="error" *ngIf="status === 'error'">{{ errorMessage }}</p>
+      </div>
+    </form>
+  </div>
+</section>

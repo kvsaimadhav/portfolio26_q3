@@ -1,0 +1,128 @@
+<section class="education-section" [@fadeInUp]>
+  <div class="education-container">
+    <!-- Header -->
+    <div class="education-header">
+      <div class="header-content">
+        <p class="section-tag">Academic Journey</p>
+        <h2 class="section-title">Education & Qualifications</h2>
+        <p class="section-subtitle">
+          Advanced degrees and certifications spanning cloud computing, distributed systems, and full-stack engineering
+        </p>
+      </div>
+
+      <!-- Header Stats -->
+      <div class="header-stats">
+        <div class="header-stat">
+          <span class="stat-number">{{ educationList.length }}</span>
+          <span class="stat-text">Degrees</span>
+        </div>
+        <div class="header-stat">
+          <span class="stat-number">3</span>
+          <span class="stat-text">Institutions</span>
+        </div>
+        <div class="header-stat">
+          <span class="stat-number">3.93</span>
+          <span class="stat-text">Best GPA</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Grid (2x2) -->
+    <div class="education-grid" [@staggerCards]>
+      <div *ngFor="let edu of educationList; let i = index" 
+           class="edu-card-wrapper"
+           [attr.data-level]="edu.level"
+           [style.--item-color]="edu.color">
+        
+        <!-- Gradient Background -->
+        <div class="card-bg-gradient"></div>
+
+        <!-- Main Card -->
+        <div class="education-card">
+          <!-- Top Accent Bar -->
+          <div class="card-accent-bar"></div>
+
+          <!-- Icon & Level -->
+          <div class="card-top">
+            <div class="card-icon">{{ edu.icon }}</div>
+            <div class="level-badge">{{ getEducationLevel(edu.level) }}</div>
+          </div>
+
+          <!-- Degree Title -->
+          <h3 class="degree-title">{{ edu.degree }}</h3>
+
+          <!-- Institution -->
+          <p class="institution-name">{{ edu.institution }}</p>
+
+          <!-- Score & Progress -->
+          <div class="score-container">
+            <div class="score-box">
+              <div class="score-info">
+                <span class="score-label">Grade</span>
+                <span class="score-rating">{{ getScoreRating(edu.score) }}</span>
+              </div>
+              <div class="score-display">
+                <span class="score-badge">{{ getScoreBadge(edu.score) }}</span>
+                <span class="score-value" [class.animate]="animateGpa">{{ edu.score }}</span>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-fill" 
+                   [style.width.%]="getProgressWidth(edu.score)"
+                   [style.--progress-color]="getScoreColor(edu.score)"></div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="description">{{ edu.description }}</p>
+
+          <!-- Duration & Footer -->
+          <div class="card-footer">
+            <span class="duration">{{ edu.duration }}</span>
+            <span class="footer-icon">✦</span>
+          </div>
+        </div>
+
+        <!-- Hover Glow Effect -->
+        <div class="card-glow"></div>
+      </div>
+    </div>
+
+    <!-- Enhanced Stats Section -->
+    <div class="education-stats-section" [@slideInLeft]>
+      <div class="stats-wrapper">
+        <div class="stat-card-enhanced">
+          <div class="stat-icon-large">🎓</div>
+          <div class="stat-content">
+            <div class="stat-value-large">{{ educationList.length }}</div>
+            <div class="stat-label-large">Academic Degrees</div>
+            <p class="stat-desc">From foundational to advanced specializations</p>
+          </div>
+        </div>
+
+        <div class="stat-divider-vertical"></div>
+
+        <div class="stat-card-enhanced">
+          <div class="stat-icon-large">🏫</div>
+          <div class="stat-content">
+            <div class="stat-value-large">3</div>
+            <div class="stat-label-large">Premier Institutions</div>
+            <p class="stat-desc">CMU, BITS Pilani, and more</p>
+          </div>
+        </div>
+
+        <div class="stat-divider-vertical"></div>
+
+        <div class="stat-card-enhanced">
+          <div class="stat-icon-large">📈</div>
+          <div class="stat-content">
+            <div class="stat-value-large">3.93</div>
+            <div class="stat-label-large">Perfect GPA</div>
+            <p class="stat-desc">Master's degree excellence</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

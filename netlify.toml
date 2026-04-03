@@ -1,0 +1,17 @@
+[build]
+  publish = "dist/portfolio26/browser"
+  command = "npm run build"
+
+# Allow POST to reach Netlify Forms
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+  conditions = ["GET"]
+
+# SPA fallback (GET only)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = ["GET"]

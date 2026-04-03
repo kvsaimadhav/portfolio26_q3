@@ -1,0 +1,91 @@
+<section id="home" class="hero" [attr.data-loaded]="isLoaded">
+  <!-- Animated background elements -->
+  <div class="hero-bg-elements">
+    <div class="gradient-blob blob-1"></div>
+    <div class="gradient-blob blob-2"></div>
+    <div class="gradient-line"></div>
+  </div>
+
+  <div class="hero-container">
+    <!-- UNIFIED CONTENT -->
+    <div class="hero-unified-content">
+      
+      <!-- LEFT: PROFILE IMAGE (Repositioned) -->
+      <div class="hero-image-section">
+        <div class="profile-card">
+          <div class="profile-image">
+            <div class="image-wrapper">
+              <div class="availability-dot" aria-hidden="true"></div>
+              <img
+                [src]="profilePhoto"
+                alt="Sai Madhav — Senior Software Developer"
+                class="profile-photo"
+                (error)="handleImageError($event)"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="profile-badge">
+            <span class="badge-text">Senior Developer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: TEXT CONTENT -->
+      <div class="hero-text-section">
+        <div class="hero-intro">👋 Welcome to my portfolio</div>
+        
+        <h1 class="hero-name">
+          <span class="text-gradient">Kaza Venkata Sai Madhav</span>
+        </h1>
+
+        <h2 class="hero-title">
+          Senior Software Developer
+        </h2>
+
+        <p class="hero-description">
+          I build scalable cloud and backend systems. Specializing in AWS, database optimization, and HLS streaming architecture with 3.5+ years of proven impact.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">AWS Cloud</div>
+            <div class="stat-label">Certified Specialist</div>
+          </div>
+        </div>
+
+        <div class="hero-badges">
+          <span class="badge badge-available">✓ Available for remote / hybrid</span>
+          <span class="badge badge-roles">✦ Open to senior roles</span>
+        </div>
+
+        <div class="hero-buttons">
+          <a
+            href="/assets/SaiMadhav_Resume.pdf"
+            class="btn btn-primary"
+            download
+          >
+            <span class="btn-icon">📥</span> Download Resume
+          </a>
+
+          <button class="btn btn-secondary" (click)="scrollToContact($event)">
+            <span class="btn-icon">💬</span> Get in Touch
+          </button>
+
+          <button class="btn btn-outline" (click)="scrollToProjects($event)">
+            <span class="btn-icon">🚀</span> View Work
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

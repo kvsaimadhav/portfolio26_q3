@@ -1,0 +1,83 @@
+<nav class="navbar" [class.scrolled]="isScrolled" [class.mobile-open]="isMobileOpen" [attr.data-theme]="isDark ? 'dark' : 'light'">
+  <!-- Background blur effect -->
+  <div class="navbar-bg"></div>
+
+  <div class="navbar-container">
+    <!-- Logo Section -->
+    <div class="navbar-logo">
+      <button 
+        class="logo-btn" 
+        (click)="scrollTo('home')" 
+        aria-label="Go to home"
+        type="button"
+      >
+        <span class="logo-icon">Angular</span>
+        <span class="logo-icon">Portfolio</span>
+      </button>
+    </div>
+
+    <!-- Navigation Menu -->
+    <ul class="nav-menu" [class.active]="isMobileOpen">
+      <li class="nav-item" *ngFor="let item of navItems">
+        <button
+          class="nav-link"
+          [class.active]="isActive(item.id)"
+          (click)="scrollTo(item.id)"
+          [attr.aria-label]="'Navigate to ' + item.label"
+          type="button"
+        >
+          <span class="nav-icon">{{ getNavIcon(item.id) }}</span>
+          <span class="nav-text">{{ item.label }}</span>
+          <span class="nav-underline"></span>
+        </button>
+      </li>
+    </ul>
+
+    <!-- Right Actions -->
+    <div class="navbar-actions">
+      <!-- Theme Toggle -->
+      <button
+        class="action-btn theme-toggle"
+        (click)="toggleTheme()"
+        [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+        title="Toggle theme"
+        type="button"
+        [class.dark-mode]="isDark"
+        [class.light-mode]="!isDark"
+      >
+        <span class="theme-icon sun-icon" *ngIf="isDark">☀️</span>
+        <span class="theme-icon moon-icon" *ngIf="!isDark">🌙</span>
+      </button>
+
+      <!-- Download Resume Button -->
+      <a
+        href="/assets/SaiMadhav_Resume.pdf"
+        class="action-btn resume-btn"
+        download
+        aria-label="Download resume"
+        title="Download resume"
+      >
+        <span class="btn-icon">📥</span>
+        <span class="btn-text">Resume</span>
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        class="mobile-toggle"
+        (click)="toggleMobile()"
+        [attr.aria-label]="isMobileOpen ? 'Close menu' : 'Open menu'"
+        [class.active]="isMobileOpen"
+        type="button"
+      >
+        <span class="hamburger">
+          <span class="line line-1"></span>
+          <span class="line line-2"></span>
+          <span class="line line-3"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Divider -->
+  <div class="mobile-divider" *ngIf="isMobileOpen"></div>
+</nav>

@@ -1,0 +1,164 @@
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* =====================================================
+   DARK THEME (DEFAULT – UNCHANGED)
+===================================================== */
+:root {
+  --bg: #0f172a;
+  --surface: #111827;
+  --card-bg: #0b1324;
+
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+
+  --primary: #6366f1;
+  --accent: #22d3ee;
+
+  --border: rgba(255, 255, 255, 0.08);
+
+  --shadow:
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================================
+   LIGHT THEME (FIXED – HIGH CONTRAST)
+===================================================== */
+[data-theme="light"] {
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --card-bg: #ffffff;
+
+  --text: #0f172a;
+  --muted: #475569;
+
+  --primary: #4f46e5;
+  --accent: #db2777;
+
+  --border: rgba(15, 23, 42, 0.12);
+
+  --shadow:
+    0 12px 28px rgba(15, 23, 42, 0.10),
+    0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+/* =====================================================
+   SECTION BASE
+===================================================== */
+section {
+  position: relative;
+  padding: 5rem 1.2rem;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.3)
+  );
+  z-index: 0;
+}
+
+[data-theme="dark"] section::before {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.7),
+    rgba(15, 23, 42, 0.9)
+  );
+}
+
+section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =====================================================
+   COMMON CARD STYLE
+===================================================== */
+.card,
+.skill-card,
+.award-card,
+.timeline-card,
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* =====================================================
+   TYPOGRAPHY
+===================================================== */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: var(--text);
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+.btn {
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   LIGHT THEME — PRIMARY BUTTON TEXT COLOR FIX
+===================================================== */
+
+[data-theme="light"] .btn-primary {
+  color: #0f172a;
+  -webkit-text-fill-color: #0f172a; /* Safari */
+}
+
