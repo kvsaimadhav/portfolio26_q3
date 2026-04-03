@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/portfolio26/browser"
+  publish = "dist/portfolio26_q3/browser"
   command = "npm run build"
 
 # Allow POST to reach Netlify Forms
