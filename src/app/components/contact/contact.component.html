@@ -1,20 +1,35 @@
 <section class="contact-section" id="contact">
   <div class="contact-backdrop"></div>
+
   <div class="contact-card" [class.sending]="status === 'sending'">
+
     <div class="contact-header">
-      <p class="section-tag">Let’s Connect</p>
-      <h2>Contact Me</h2>
-      <p>Drop a message related to collaboration, consulting, or portfolio inquiries.</p>
+      <p class="section-tag">Let’s Work Together</p>
+      <h2>Have an Idea? Let’s Build It 🚀</h2>
+
+      <p class="subtitle">
+        I help build scalable apps, cloud systems, and high-performance platforms.
+      </p>
+
+      <div class="quick-info">
+        <span>⚡ Response within 24 hours</span>
+        <span>🔒 100% Confidential</span>
+      </div>
+    </div>
+
+    <div class="contact-highlight">
+      💼 Open for freelance & consulting
     </div>
 
     <form novalidate (ngSubmit)="onSubmit()" name="Contact-Form" data-netlify="true">
       <div class="inputs-grid">
+
         <label class="input-wrap">
           <input
             type="text"
             [(ngModel)]="name"
             name="name"
-            autocomplete="name"
+            placeholder=" "
             required
           />
           <span>Name</span>
@@ -25,7 +40,7 @@
             type="email"
             [(ngModel)]="email"
             name="email"
-            autocomplete="email"
+            placeholder=" "
             required
           />
           <span>Email</span>
@@ -36,10 +51,12 @@
             [(ngModel)]="message"
             name="message"
             rows="6"
+            placeholder=" "
             required
           ></textarea>
-          <span>Message</span>
+          <span>Your Message</span>
         </label>
+
       </div>
 
       <div class="submit-row">
@@ -48,20 +65,22 @@
           [disabled]="!canSubmit || status === 'sending'"
           class="btn-primary"
         >
-          <span *ngIf="status !== 'sending'">Send Message</span>
+          <span *ngIf="status !== 'sending'">🚀 Send My Request</span>
           <span *ngIf="status === 'sending'">Sending...</span>
         </button>
 
         <span class="form-hint" *ngIf="!canSubmit && status !== 'sending'">
-          All fields are required (name ≥ 3 chars, valid email, message ≥ 10 chars)
+          Fill all fields properly
         </span>
       </div>
 
       <div class="status-message">
         <p class="success" *ngIf="status === 'success'">
-          ✅ Message sent successfully!
+          🎉 Thanks! I’ll get back to you soon.
         </p>
-        <p class="error" *ngIf="status === 'error'">{{ errorMessage }}</p>
+        <p class="error" *ngIf="status === 'error'">
+          {{ errorMessage }}
+        </p>
       </div>
     </form>
   </div>

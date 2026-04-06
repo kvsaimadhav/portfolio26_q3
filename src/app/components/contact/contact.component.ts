@@ -26,12 +26,14 @@ export class ContactComponent {
 
   onSubmit(): void {
     if (!this.canSubmit) {
-      this.errorMessage = 'Complete all fields with valid values.';
+      this.errorMessage = 'Please fill all fields correctly.';
       this.status = 'error';
       return;
     }
+
     this.status = 'sending';
     this.errorMessage = '';
+
     setTimeout(() => {
       this.status = 'success';
       this.name = '';
