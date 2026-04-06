@@ -48,4 +48,14 @@ export class FooterComponent {
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', this.theme);
   }
+
+  getWhatsAppLink(): string {
+    const phone = '917702596857'; // replace your number
+
+    const message = encodeURIComponent(
+      `Hi Sai Madhav, I came across your portfolio and would like to discuss a project / collaboration.`
+    );
+
+    return `https://wa.me/${phone}?text=${message}`;
+  }
 }
