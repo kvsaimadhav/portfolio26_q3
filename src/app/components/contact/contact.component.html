@@ -21,50 +21,35 @@
       💼 Open for freelance & consulting
     </div>
 
-    <form novalidate (ngSubmit)="onSubmit()" name="Contact-Form" data-netlify="true">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" (ngSubmit)="onSubmit()"
+      novalidate>
+      <!-- REQUIRED hidden field -->
+      <input type="hidden" name="form-name" value="contact" />
+
+      <!-- Spam protection -->
+      <input type="hidden" name="bot-field" />
+
       <div class="inputs-grid">
 
         <label class="input-wrap">
-          <input
-            type="text"
-            [(ngModel)]="name"
-            name="name"
-            placeholder=" "
-            required
-          />
+          <input type="text" [(ngModel)]="name" name="name" placeholder=" " required />
           <span>Name</span>
         </label>
 
         <label class="input-wrap">
-          <input
-            type="email"
-            [(ngModel)]="email"
-            name="email"
-            placeholder=" "
-            required
-          />
+          <input type="email" [(ngModel)]="email" name="email" placeholder=" " required />
           <span>Email</span>
         </label>
 
         <label class="textarea-wrap">
-          <textarea
-            [(ngModel)]="message"
-            name="message"
-            rows="6"
-            placeholder=" "
-            required
-          ></textarea>
+          <textarea [(ngModel)]="message" name="message" rows="6" placeholder=" " required></textarea>
           <span>Your Message</span>
         </label>
 
       </div>
 
       <div class="submit-row">
-        <button
-          type="submit"
-          [disabled]="!canSubmit || status === 'sending'"
-          class="btn-primary"
-        >
+        <button type="submit" [disabled]="!canSubmit || status === 'sending'" class="btn-primary">
           <span *ngIf="status !== 'sending'">🚀 Send My Request</span>
           <span *ngIf="status === 'sending'">Sending...</span>
         </button>

@@ -24,21 +24,30 @@ export class ContactComponent {
     );
   }
 
-  onSubmit(): void {
-    if (!this.canSubmit) {
-      this.errorMessage = 'Please fill all fields correctly.';
-      this.status = 'error';
-      return;
-    }
+  onSubmit() {
+    if (!this.canSubmit) return;
 
     this.status = 'sending';
-    this.errorMessage = '';
 
-    setTimeout(() => {
-      this.status = 'success';
-      this.name = '';
-      this.email = '';
-      this.message = '';
-    }, 1200);
+    const formData = new FormData();
+    formData.append('form-name', 'contact');
+    formData.append('name', this.name);
+    formData.append('email', this.email);
+    formData.append('message', this.message);
+
+    fetch('/', {
+      method: 'POST',
+      body: formData
+    })
+      .then(() => {
+        this.status = 'success';
+        this.name = '';
+        this.email = '';
+        this.message = '';
+      })
+      .catch(() => {
+        this.status = 'error';
+        this.errorMessage = 'Something went wrong. Try again.';
+      });
   }
 }
